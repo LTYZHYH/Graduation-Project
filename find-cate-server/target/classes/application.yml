@@ -1,0 +1,58 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 28800
+#token的信息配置
+token:
+    expired_in:
+      7200
+    issuer:
+      j2e8
+    key:
+      j2e8findcate
+server:
+#运行后的端口地址
+  port: 12344
+#sping配置
+spring:
+  profiles:
+  #配置使用最后面的数据库哪个环境（local）
+    active: local
+  application:
+  #应用名称
+    name: find-cate
+  #springdata的配置
+  data:
+    rest:
+      base-path: /
+      #默认分页参数
+      default-page-size: 10
+      default-page-number: 0
+      page-param-name: number
+      sort-param-name: sort
+      limit-param-name: size
+  jpa:
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  resources:
+    static-locations: classpath:static/
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 30MB
+      max-request-size: 300MB
+---
+#配置的数据库环境
+spring:
+    profiles: local
+    #数据库链接（地址，账号，密码）
+    datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/j2e8?characterEncoding=utf-8&&useSSL=false
+      username: root
+      password: 1234qwer
