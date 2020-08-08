@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/cityTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginBottom="15dp"
+        android:text="标题" />
+
+    <ImageView
+        android:id="@+id/cityPicture"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+</LinearLayout>

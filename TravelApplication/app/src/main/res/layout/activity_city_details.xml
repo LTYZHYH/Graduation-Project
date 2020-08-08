@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.details.cityDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/details_background"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="16dp">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/loopDetailsBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:id="@+id/pager_img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/pager_img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/pager_img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </androidx.viewpager.widget.ViewPager>
+
+            <!--        <LinearLayout-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="25dp"-->
+            <!--        android:layout_gravity="bottom"-->
+            <!--        android:orientation="horizontal"-->
+            <!--        android:gravity="center_vertical"-->
+            <!--        android:background="@color/buttonBlue">-->
+
+            <!--            &lt;!&ndash; 小圆点&ndash;&gt;-->
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:id="@+id/ll_dots_loop"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                android:gravity="right"-->
+            <!--                android:layout_marginRight="10dp"-->
+            <!--                android:padding="10dp">-->
+            <!--            </LinearLayout>-->
+
+            <!--        </LinearLayout>-->
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/details_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/details_background"
+            app:layout_constraintVertical_bias="1.0"
+            tools:layout_editor_absoluteX="0dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/issue_ts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/issue_ts" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/search_ts_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="2">
+
+                <SearchView
+                    android:id="@+id/search_ts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:queryHint="搜索攻略的主题"/>
+                <RadioGroup
+                    android:id="@+id/select_radio_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/less_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="短期" />
+
+                    <RadioButton
+                        android:id="@+id/less_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="短途" />
+
+                    <RadioButton
+                        android:id="@+id/synthesize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="综合" />
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scenic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.815"
+            tools:layout_editor_absoluteX="16dp">
+
+            <com.jcodecraeer.xrecyclerview.XRecyclerView
+                android:id="@+id/listContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
