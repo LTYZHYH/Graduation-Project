@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.component.popup.ShowFoodImageDialog;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
@@ -50,7 +51,7 @@ public class WaterfallAdapter extends RecyclerView.Adapter<WaterfallAdapter.Wate
             holder.foodItem.setLayoutParams(new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 600));
         }
         GlideApp.with(mContext)
-                .load(Global_Variable.IP + "/food/FoodPicture/" + foodList.get(position).getFoodPhoto())
+                .load(BuildConfig.BASE_URL + "/food/FoodPicture/" + foodList.get(position).getFoodPhoto())
                 .placeholder(R.drawable.loading)
                 .into(holder.foodPhoto);
         holder.foodPhoto.setOnClickListener(new View.OnClickListener() {

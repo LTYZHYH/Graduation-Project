@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.service.business.listener.OnResultListener;
 import com.example.travelapplication.service.httprequest.RegisterHttpRequestService;
@@ -24,7 +25,7 @@ public class RegisterBusinessService extends BusinessService{
     private void register(final OnResultListener onResultListener, Map<String, Object> params) {
         RegisterHttpRequestService registerHttpRequestService = createRetrofit().create(RegisterHttpRequestService.class);
 
-        String url = Global_Variable.IP+"/user/register";
+        String url = BuildConfig.BASE_URL+"/user/register";
 
         Call<ResponseBody> registerCall = registerHttpRequestService.register(url, params);
 

@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.exception.ThrowableException;
 import com.example.travelapplication.exception.TokenRefreshFailedException;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
@@ -71,7 +72,7 @@ public class IssueTravelStrategyBusinessService extends BusinessService {
 
         IssueTravelStrategyHttpService issueTravelStrategyHttpService = onlyCreatRetrofit().create(IssueTravelStrategyHttpService.class);
 
-        String url = Global_Variable.IP+"/travelstrategy/issueStrategy";
+        String url = BuildConfig.BASE_URL+"/travelstrategy/issueStrategy";
 
         Call<ResponseBody> call = issueTravelStrategyHttpService.upLoad(url, requestBody);
         call.enqueue(new Callback<ResponseBody>() {

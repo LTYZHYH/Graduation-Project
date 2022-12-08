@@ -2,6 +2,7 @@ package team.j2e8.findcateserver.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,12 +25,11 @@ public class CityController {
     private IdentityContext identityContext;
     @Autowired
     private CityService cityService;
-
     //添加首页城市图片
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST,value = "addCity")
     public ResponseEntity<?> addCity(@RequestParam(value = "file") MultipartFile file, City city) throws Exception{
-        File pictureFile = new File("/Users/yhh/Desktop/毕业设计/Find-Cate-master/find-cate-server/src/main/resources/static/indexPicture");
+        File pictureFile = new File("/indexPicture");
         if (!pictureFile.exists()){
             pictureFile.mkdir();
         }

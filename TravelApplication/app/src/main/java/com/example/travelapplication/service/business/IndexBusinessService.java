@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.service.business.listener.OnResultListener;
 import com.example.travelapplication.service.httprequest.IndexHttpRequestService;
@@ -13,7 +14,7 @@ public class IndexBusinessService extends BusinessService{
 
         IndexHttpRequestService indexHttpRequestService = createRetrofit().create(IndexHttpRequestService.class);
 
-        String url = Global_Variable.IP + "/city/initIndex";
+        String url = BuildConfig.BASE_URL + "/city/initIndex";
 
         Call<Iterable<Object>> cityPictureBeanCall = indexHttpRequestService.getPicture(url);
 

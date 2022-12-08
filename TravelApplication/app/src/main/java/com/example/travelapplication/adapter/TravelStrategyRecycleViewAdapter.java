@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.activity.details.TravelStrategyDetailsActivity;
 import com.example.travelapplication.activity.details.cityDetailsActivity;
@@ -45,7 +46,7 @@ public class TravelStrategyRecycleViewAdapter extends RecyclerView.Adapter<Trave
         holder.theme.setText(travelStrategyBeanList.get(position).getTheme());
         holder.area.setText(travelStrategyBeanList.get(position).getArea());
         GlideApp.with(mContext)
-                .load(Global_Variable.IP + "/travelstrategy/picture/" + travelStrategyBeanList.get(position).getStrategyPicture1())//获取图片（IP+文件储存路径）
+                .load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + travelStrategyBeanList.get(position).getStrategyPicture1())//获取图片（IP+文件储存路径）
                 .placeholder(R.drawable.loading)//加载未完成时显示占位图
                 .into(holder.strategyPicture1);
 

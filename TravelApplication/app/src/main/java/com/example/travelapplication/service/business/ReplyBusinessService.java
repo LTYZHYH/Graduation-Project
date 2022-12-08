@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.model.Commity;
 import com.example.travelapplication.model.Page;
@@ -21,7 +22,7 @@ public class ReplyBusinessService extends BusinessService{
         Map<String,Object> params = new HashMap<>();
         params.put("commity_id", commentId);
         params.put("reply_content", replyContent);
-        String url = Global_Variable.IP + "/reply/replys";
+        String url = BuildConfig.BASE_URL + "/reply/replys";
         ReplyHttpRequestService replyHttpRequestService = refreshTokenThenReturnRetrofit().create(ReplyHttpRequestService.class);
         Call<ResponseBody> call = replyHttpRequestService.reply(url,params);
         call.enqueue(new Callback<ResponseBody>() {
@@ -51,7 +52,7 @@ public class ReplyBusinessService extends BusinessService{
             parmas.put("size",replyFilterCondition.pageSize);
         }
 
-        String url = Global_Variable.IP + "/reply/getReply";
+        String url = BuildConfig.BASE_URL + "/reply/getReply";
         ReplyHttpRequestService replyHttpRequestService = createRetrofit().create(ReplyHttpRequestService.class);
         Call<Page<Reply>> call = replyHttpRequestService.getReply(url,parmas);
         call.enqueue(new Callback<Page<Reply>>() {
@@ -75,7 +76,7 @@ public class ReplyBusinessService extends BusinessService{
         Map<String,Object> parmas = new HashMap<>();
         parmas.put("commentId", commentId);
 
-        String url = Global_Variable.IP + "/commity/getOneComment";
+        String url = BuildConfig.BASE_URL + "/commity/getOneComment";
         ReplyHttpRequestService replyHttpRequestService = createRetrofit().create(ReplyHttpRequestService.class);
         Call<Commity> call = replyHttpRequestService.getOneComment(url,parmas);
         call.enqueue(new Callback<Commity>() {

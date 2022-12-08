@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.adapter.GlideApp;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
@@ -38,7 +39,7 @@ public class ShowStrategyImageDialog extends Dialog {
         setContentView(R.layout.dialog_strategy_pic);
         bigPic = findViewById(R.id.big_strategy_pic);
         GlideApp.with(mContext)
-                .load(Global_Variable.IP + "/travelstrategy/picture/" + PicPath)
+                .load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + PicPath)
                 .placeholder(R.drawable.loading)
                 .into(bigPic);
         setCanceledOnTouchOutside(true); // 设置点击屏幕或物理返回键，dialog是否消失

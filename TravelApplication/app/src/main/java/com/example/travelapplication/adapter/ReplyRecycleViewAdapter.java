@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.infrastructure.utils.SnackBarUtils;
@@ -49,7 +50,7 @@ public class ReplyRecycleViewAdapter extends RecyclerView.Adapter<ReplyRecycleVi
         holder.replyContent.setText(replyList.get(position).getReplyContent());
         holder.replyDate.setText(getFormatDatetime(replyList.get(position).getReplyTime()));
         GlideApp.with(mContext)
-                .load(Global_Variable.IP + "/user/userPicture/" + replyList.get(position).getUser().getUserPhoto())
+                .load(BuildConfig.BASE_URL + "/user/userPicture/" + replyList.get(position).getUser().getUserPhoto())
                 .placeholder(R.drawable.loading)
                 .into(holder.userPicture);
         holder.report.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,7 @@ package team.j2e8.findcateserver.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,23 +34,26 @@ public class TravelStrategyController {
     private IdentityContext identityContext;
     @Autowired
     private TravelStrategyService travelStrategyService;
-
+    private FileUtil fileUtil = new FileUtil();
     @RequestMapping(method = RequestMethod.GET, value = "/picture/{pictureId}")
     public void getPic(@PathVariable("pictureId") String pictureId, HttpServletResponse response) throws IOException {
         if (pictureId != null) {
             response.setContentType("image/jpeg");
-            FileInputStream is = new FileInputStream("/Users/yhh/Desktop/毕业设计/Find-Cate-master/find-cate-server/src/main/resources/static/strategyPicture/" + pictureId);
-
-            if (is != null) {
-                int i = is.available(); // 得到文件大小
-                byte data[] = new byte[i]; // data是字节
-                is.read(data); // 从输入流里，把图片读到data变量里。
-                is.close(); // 输入流读完要关闭，否则内存会一直占用
-                response.setContentType("image/jpeg");  // 设置返回的文件类型
-                OutputStream toClient = response.getOutputStream(); // toClient就是response的输出流，就是响应的意思
-                toClient.write(data); // 把data写到toClient
-                toClient.close();
-            }
+            String path = "/strategyPicture/";
+            String contentType = "image/jpeg";
+            fileUtil.getPictureFile(path,contentType,pictureId,response);
+//            FileInputStream is = new FileInputStream();
+//
+//            if (is != null) {
+//                int i = is.available(); // 得到文件大小
+//                byte data[] = new byte[i]; // data是字节
+//                is.read(data); // 从输入流里，把图片读到data变量里。
+//                is.close(); // 输入流读完要关闭，否则内存会一直占用
+//                response.setContentType("image/jpeg");  // 设置返回的文件类型
+//                OutputStream toClient = response.getOutputStream(); // toClient就是response的输出流，就是响应的意思
+//                toClient.write(data); // 把data写到toClient
+//                toClient.close();
+//            }
         }
     }
 
@@ -59,7 +63,7 @@ public class TravelStrategyController {
                                            @RequestParam(value = "file2", required = false) MultipartFile file2,
                                            @RequestParam(value = "file3", required = false) MultipartFile file3,
                                            TravelStrategy travelStrategy, String issueTime1, City city) throws IOException {
-        String path = "/Users/yhh/Desktop/毕业设计/Find-Cate-master/find-cate-server/src/main/resources/static/strategyPicture";
+        String path = "/strategyPicture";
         FileUtil fileUtil = new FileUtil();
         String strategyPicture1;
         String strategyPicture2;

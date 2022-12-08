@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.infrastructure.utils.RetrofitUtils;
 import com.example.travelapplication.service.business.listener.OnResultListener;
@@ -24,7 +25,7 @@ public class LoginBusinessService extends BusinessService{
     private void login(final OnResultListener onResultListener, Map<String, Object> params) {
         LoginHttpRequestService loginHttpRequestService = createRetrofit().create(LoginHttpRequestService.class);
 
-        String url = Global_Variable.IP+"/user/login";
+        String url = BuildConfig.BASE_URL+"/user/login";
 
         Call<Map<String, Object>> mapCall = loginHttpRequestService.login(url, RetrofitUtils.buildJsonRequestBody(params));
 

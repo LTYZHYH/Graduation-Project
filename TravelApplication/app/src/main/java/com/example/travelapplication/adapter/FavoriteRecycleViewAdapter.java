@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.activity.details.TravelStrategyDetailsActivity;
 import com.example.travelapplication.activity.register.PersonalCenterActivity;
@@ -48,7 +49,7 @@ public class FavoriteRecycleViewAdapter extends RecyclerView.Adapter<FavoriteRec
     public void onBindViewHolder(@NonNull final GridViewHolder holder, final int position) {
         holder.favoriteTitle.setText(favoriteList.get(position).getTravelStrategy().getTheme());
         GlideApp.with(mContext)
-                .load(Global_Variable.IP + "/travelstrategy/picture/" + favoriteList.get(position).getTravelStrategy().getStrategyPicture1())
+                .load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + favoriteList.get(position).getTravelStrategy().getStrategyPicture1())
                 .placeholder(R.drawable.loading)//加载未完成时显示占位图
                 .into(holder.favoritePic);
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.activity.IndexActivity;
 import com.example.travelapplication.activity.details.cityDetailsActivity;
@@ -50,7 +51,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridViewHolder
     public void onBindViewHolder(@NonNull GridAdapter.GridViewHolder holder, final int position) {
         holder.cityTitle.setText(cityPictureBeanList.get(position).getCityTitle());
         GlideApp.with(mContext)
-                .load(Global_Variable.IP + cityPictureBeanList.get(position).getCityPicture())//获取图片（IP+文件储存路径）
+                .load(BuildConfig.BASE_URL + cityPictureBeanList.get(position).getCityPicture())//获取图片（IP+文件储存路径）
                 .placeholder(R.drawable.loading)//加载未完成时显示占位图
                 .into(holder.cityPicture);
         holder.itemView.setOnClickListener(new View.OnClickListener() {

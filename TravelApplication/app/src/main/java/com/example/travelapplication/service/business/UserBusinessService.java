@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.infrastructure.utils.RetrofitUtils;
 import com.example.travelapplication.model.Favorite;
@@ -24,7 +25,7 @@ import retrofit2.Response;
 
 public class UserBusinessService extends BusinessService{
     public void getUserInformation(final OnResultListener onResultListener){
-        String url = Global_Variable.IP + "/user/info";
+        String url = BuildConfig.BASE_URL + "/user/info";
         UserHttpRequestService userHttpRequestService = refreshTokenThenReturnRetrofit().create(UserHttpRequestService.class);
         Call<User> userCall = userHttpRequestService.getUserInformation(url);
         userCall.enqueue(new Callback<User>() {
@@ -54,7 +55,7 @@ public class UserBusinessService extends BusinessService{
         }
         params.put("sort", "strategyId,desc");
 
-        String url = Global_Variable.IP + "/user/getMyStrategy";
+        String url = BuildConfig.BASE_URL + "/user/getMyStrategy";
         UserHttpRequestService userHttpRequestService = refreshTokenThenReturnRetrofit().create(UserHttpRequestService.class);
         Call<Page<TravelStrategy>> userCall = userHttpRequestService.getMyStrategy(url,params);
         userCall.enqueue(new Callback<Page<TravelStrategy>>() {
@@ -83,7 +84,7 @@ public class UserBusinessService extends BusinessService{
             params.put("number",favoriteFilterCondition.pageNum);
         }
         params.put("sort","favoriteId");
-        String url = Global_Variable.IP + "/favorite/getMyfavoriteStrategy";
+        String url = BuildConfig.BASE_URL + "/favorite/getMyfavoriteStrategy";
         UserHttpRequestService userHttpRequestService = refreshTokenThenReturnRetrofit().create(UserHttpRequestService.class);
         Call<Page<Favorite>> call = userHttpRequestService.getMyFavorite(url, params);
         call.enqueue(new Callback<Page<Favorite>>() {
@@ -107,7 +108,7 @@ public class UserBusinessService extends BusinessService{
         File file = new File(userPhoto);
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("file",file.getName(),RequestBody.create(MediaType.parse("image/*"),file)).build();
-        String url = Global_Variable.IP + "/user/addUserPic";
+        String url = BuildConfig.BASE_URL + "/user/addUserPic";
         UserHttpRequestService userHttpRequestService = refreshTokenThenReturnRetrofit().create(UserHttpRequestService.class);
         Call<ResponseBody> call = userHttpRequestService.addUserPic(url,requestBody);
         call.enqueue(new Callback<ResponseBody>() {
@@ -130,7 +131,7 @@ public class UserBusinessService extends BusinessService{
     public void cancelFavorite(final OnResultListener onResultListener, Integer strateId){
         Map<String,Object> params = new HashMap<>();
         params.put("strategy_id", strateId);
-        String url = Global_Variable.IP + "/favorite/cancelFavorite";
+        String url = BuildConfig.BASE_URL + "/favorite/cancelFavorite";
         UserHttpRequestService userHttpRequestService = refreshTokenThenReturnRetrofit().create(UserHttpRequestService.class);
         Call<ResponseBody> call = userHttpRequestService.cancelFavorite(url, RetrofitUtils.buildJsonRequestBody(params));
         call.enqueue(new Callback<ResponseBody>() {
@@ -155,7 +156,7 @@ public class UserBusinessService extends BusinessService{
         map.put("new_user_name", newName);
         map.put("new_user_email", newEmail);
         map.put("new_user_phone", newPhone);
-        String url = Global_Variable.IP + "/user/upData";
+        String url = BuildConfig.BASE_URL + "/user/upData";
         UserHttpRequestService userHttpRequestService = refreshTokenThenReturnRetrofit().create(UserHttpRequestService.class);
         Call<ResponseBody> call = userHttpRequestService.upData(url,RetrofitUtils.buildJsonRequestBody(map));
         call.enqueue(new Callback<ResponseBody>() {

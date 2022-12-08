@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.activity.base.BaseActivity;
 import com.example.travelapplication.activity.comment.CommentStrategyActivity;
@@ -235,9 +236,9 @@ public class TravelStrategyDetailsActivity extends BaseActivity implements Loadi
     }
 
     private void initStrategy(TravelStrategy travelStrategy) {
-        GlideApp.with(this).load(Global_Variable.IP + "/travelstrategy/picture/" + travelStrategy.getStrategyPicture1()).placeholder(R.drawable.loading).into(img1);
-        GlideApp.with(this).load(Global_Variable.IP + "/travelstrategy/picture/" + travelStrategy.getStrategyPicture2()).placeholder(R.drawable.loading).into(img2);
-        GlideApp.with(this).load(Global_Variable.IP + "/travelstrategy/picture/" + travelStrategy.getStrategyPicture3()).placeholder(R.drawable.loading).into(img3);
+        GlideApp.with(this).load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + travelStrategy.getStrategyPicture1()).placeholder(R.drawable.loading).into(img1);
+        GlideApp.with(this).load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + travelStrategy.getStrategyPicture2()).placeholder(R.drawable.loading).into(img2);
+        GlideApp.with(this).load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + travelStrategy.getStrategyPicture3()).placeholder(R.drawable.loading).into(img3);
         cityName = travelStrategy.getArea();
         themeText.setText(travelStrategy.getTheme());
         areaText.setText(travelStrategy.getArea());

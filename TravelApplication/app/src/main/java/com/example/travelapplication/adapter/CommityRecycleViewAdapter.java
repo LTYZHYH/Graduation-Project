@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.activity.comment.CommentStrategyActivity;
 import com.example.travelapplication.activity.comment.ReplyActivity;
@@ -52,7 +53,7 @@ public class CommityRecycleViewAdapter extends RecyclerView.Adapter<CommityRecyc
         holder.replyContent.setText(commityBeanList.get(position).getCommityContent());
         holder.replyDate.setText(getFormatDatetime(commityBeanList.get(position).getCommityTime()));
         GlideApp.with(mContext)
-                .load(Global_Variable.IP + "/user/userPicture/" + commityBeanList.get(position).getUser().getUserPhoto())
+                .load(BuildConfig.BASE_URL + "/user/userPicture/" + commityBeanList.get(position).getUser().getUserPhoto())
                 .placeholder(R.drawable.loading)
                 .into(holder.userPicture);
         holder.toReply.setOnClickListener(new View.OnClickListener() {

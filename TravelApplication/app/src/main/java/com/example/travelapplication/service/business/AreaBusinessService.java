@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.service.business.listener.OnResultListener;
 import com.example.travelapplication.service.httprequest.AreaBusinessHttpRequestService;
@@ -21,7 +22,7 @@ public class AreaBusinessService extends BusinessService{
     public void getArea(final OnResultListener onResultListener, Map<String, Object> params){
         AreaBusinessHttpRequestService areaBusinessHttpRequestService = createRetrofit().create(AreaBusinessHttpRequestService.class);
 
-        String url = Global_Variable.IP+"/area/getAreaByCityId";
+        String url = BuildConfig.BASE_URL+"/area/getAreaByCityId";
 
         Call<Iterable<Object>> call = areaBusinessHttpRequestService.getArea(url, params);
 

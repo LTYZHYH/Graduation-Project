@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.activity.base.BaseFormActivity;
 import com.example.travelapplication.activity.view.BaseView;
@@ -116,7 +117,7 @@ public class PersonalCenterActivity extends BaseFormActivity implements LoadingV
                 phone.setText(user.getUserTelenumber());
                 if (user.getUserPhoto() != null){
                     picUrl = user.getUserPhoto();
-                    GlideApp.with(PersonalCenterActivity.this).load(Global_Variable.IP + "/user/userPicture/" + user.getUserPhoto()).into(userPhoto);
+                    GlideApp.with(PersonalCenterActivity.this).load(BuildConfig.BASE_URL + "/user/userPicture/" + user.getUserPhoto()).into(userPhoto);
                 } else {
                     GlideApp.with(PersonalCenterActivity.this).load(R.drawable.loading).into(userPhoto);
                 }
@@ -349,7 +350,7 @@ public class PersonalCenterActivity extends BaseFormActivity implements LoadingV
     public void selectUserPicture(View view){
         PictureSelector
                 .create(PersonalCenterActivity.this, PictureSelector.SELECT_REQUEST_CODE1)
-                .selectPicture(true , 100, 100, 1, 1);
+                .selectPicture(false , 100, 100, 1, 1);
     }
 
     @Override

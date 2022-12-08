@@ -56,3 +56,7 @@ spring:
       url: jdbc:mysql://localhost:3306/j2e8?characterEncoding=utf-8&&useSSL=false
       username: root
       password: 1234qwer
+#创建文件夹在服务器端的存放路径
+base_file_path:
+  base_file: /Users/yhh/GitHub/Graduation-Project/find-cate-server/src/main/resources/static
+#  base_file: src/main/resources/static

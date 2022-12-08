@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.infrastructure.utils.RetrofitUtils;
 import com.example.travelapplication.service.business.listener.OnResultListener;
@@ -19,7 +20,7 @@ public class ReportBusinessService extends BusinessService {
         map.put("strategy_id", strateId);
         map.put("strategy_reason", reason);
         ReportHttpRequestService reportHttpRequestService = createRetrofit().create(ReportHttpRequestService.class);
-        String url = Global_Variable.IP+"/report/reportStrategy";
+        String url = BuildConfig.BASE_URL+"/report/reportStrategy";
         Call<ResponseBody> mapCall = reportHttpRequestService.reportStrategy(url, RetrofitUtils.buildJsonRequestBody(map));
         mapCall.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -42,7 +43,7 @@ public class ReportBusinessService extends BusinessService {
         Map<String,Object> map = new HashMap<>();
         map.put("id", strateId);
         ReportHttpRequestService reportHttpRequestService = createRetrofit().create(ReportHttpRequestService.class);
-        String url = Global_Variable.IP+"/report/"+rurl;
+        String url = BuildConfig.BASE_URL+"/report/"+rurl;
         Call<ResponseBody> mapCall = reportHttpRequestService.report(url, RetrofitUtils.buildJsonRequestBody(map));
         mapCall.enqueue(new Callback<ResponseBody>() {
             @Override

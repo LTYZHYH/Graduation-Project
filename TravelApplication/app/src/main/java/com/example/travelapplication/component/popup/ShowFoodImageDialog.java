@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.R;
 import com.example.travelapplication.adapter.GlideApp;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
@@ -39,7 +40,7 @@ public class ShowFoodImageDialog extends Dialog {
         bigPic = findViewById(R.id.big_food_pic);
         BigPicLayout = findViewById(R.id.big_Pic_Layout);
         GlideApp.with(mContext)
-                .load(Global_Variable.IP + "/food/FoodPicture/" + PicPath)
+                .load(BuildConfig.BASE_URL + "/food/FoodPicture/" + PicPath)
                 .placeholder(R.drawable.loading)
                 .into(bigPic);
         setCanceledOnTouchOutside(true); // 设置点击屏幕或物理返回键，dialog是否消失

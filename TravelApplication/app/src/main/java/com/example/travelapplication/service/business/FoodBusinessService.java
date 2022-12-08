@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.model.Food;
 import com.example.travelapplication.model.Page;
@@ -28,7 +29,7 @@ public class FoodBusinessService extends BusinessService{
         if (foodFilterCondition.getPageNum() != null){
             params.put("number",foodFilterCondition.pageNum);
         }
-        String url = Global_Variable.IP + "/food/getAllFood";
+        String url = BuildConfig.BASE_URL + "/food/getAllFood";
         FoodHttpRequestService foodHttpRequestService = createRetrofit().create(FoodHttpRequestService.class);
         Call<Page<Food>> call = foodHttpRequestService.getAllFood(url,params);
         call.enqueue(new Callback<Page<Food>>() {
@@ -58,7 +59,7 @@ public class FoodBusinessService extends BusinessService{
             builder.addFormDataPart("foodPhoto", img.getName(), RequestBody.create(MediaType.parse("image/*"), img));
         }
         RequestBody requestBody = builder.build();
-        String url = Global_Variable.IP + "/food/serve";
+        String url = BuildConfig.BASE_URL + "/food/serve";
         FoodHttpRequestService foodHttpRequestService = refreshTokenThenReturnRetrofit().create(FoodHttpRequestService.class);
         Call<ResponseBody> call = foodHttpRequestService.addFood(url,requestBody);
         call.enqueue(new Callback<ResponseBody>() {
@@ -91,7 +92,7 @@ public class FoodBusinessService extends BusinessService{
         if (areaName != null){
             params.put("areaName",areaName);
         }
-        String url = Global_Variable.IP + "/food/getFoodBySearch";
+        String url = BuildConfig.BASE_URL + "/food/getFoodBySearch";
         FoodHttpRequestService foodHttpRequestService = createRetrofit().create(FoodHttpRequestService.class);
         Call<Page<Food>> call = foodHttpRequestService.getFoodByLike(url,params);
         call.enqueue(new Callback<Page<Food>>() {
@@ -120,7 +121,7 @@ public class FoodBusinessService extends BusinessService{
             params.put("number",foodFilterCondition.pageNum);
         }
         params.put("areaName",areaName);
-        String url = Global_Variable.IP + "/food/getFoodByAreaName";
+        String url = BuildConfig.BASE_URL + "/food/getFoodByAreaName";
         FoodHttpRequestService foodHttpRequestService = createRetrofit().create(FoodHttpRequestService.class);
         Call<Page<Food>> call = foodHttpRequestService.getFoodByArea(url,params);
         call.enqueue(new Callback<Page<Food>>() {

@@ -2,6 +2,7 @@ package team.j2e8.findcateserver.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class FoodController {
                                        @RequestParam(value = "foodName") String foodName,
                                        @RequestParam(value = "foodIntroduction") String foodIntroduction,
                                        @RequestParam(value = "areaName") String areaName) throws Exception{
-        String path = "/Users/yhh/Desktop/毕业设计/Find-Cate-master/find-cate-server/src/main/resources/static/FoodPicture";
+        String path = "/FoodPicture";
         String foodPhoto = fileUtil.FileUtil(file,path);
         foodService.addFood(foodName,foodPhoto,foodIntroduction,areaName);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(null);
@@ -65,7 +66,7 @@ public class FoodController {
     @RequestMapping(method = RequestMethod.GET, value = "/FoodPicture/{pictureName}")
     public void getFoodPicture(@PathVariable("pictureName") String pictureName, HttpServletResponse response )throws IOException {
         if (pictureName != null) {
-            String path = "/Users/yhh/Desktop/毕业设计/Find-Cate-master/find-cate-server/src/main/resources/static/FoodPicture/";
+            String path = "/FoodPicture/";
             String contentType = "image/jpeg";
             fileUtil.getPictureFile(path,contentType,pictureName,response);
         }

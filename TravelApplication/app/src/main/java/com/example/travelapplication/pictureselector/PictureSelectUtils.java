@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
@@ -28,6 +29,7 @@ import java.io.FileNotFoundException;
  * 2. 在onActivityResult中调用本工具类的onActivityResult方法处理通过相册或拍照获取的图片
  */
 public class PictureSelectUtils {
+    private static final String TAG = "PictureSelectUtils";
 
     public static final int  GET_BY_ALBUM  = 0x11;//相册标记
     public static final int  GET_BY_CAMERA = 0x12;//拍照标记
@@ -109,6 +111,7 @@ public class PictureSelectUtils {
     public static String onActivityResult(Activity activity, int requestCode, int resultCode, Intent data,
                                           boolean cropEnabled, int w, int h, int aspectX, int aspectY) {
         String picturePath = null;//图片路径
+        Log.d(TAG, "onActivityResult: resultCode = " + resultCode + " requestCode = " + requestCode);
         if (resultCode == activity.RESULT_OK) {
             Uri uri = null;
             switch (requestCode) {
@@ -117,6 +120,7 @@ public class PictureSelectUtils {
                     if (cropEnabled) {
                         activity.startActivityForResult(crop(activity, uri, w, h, aspectX, aspectY), CROP);
                     } else {
+                        Log.d(TAG, "onActivityResult: uri = " + uri.toString());
                         picturePath = ImageUtils.getImagePath(activity, uri);
                     }
                     break;

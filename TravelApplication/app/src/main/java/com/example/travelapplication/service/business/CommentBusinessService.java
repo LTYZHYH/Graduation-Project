@@ -1,5 +1,6 @@
 package com.example.travelapplication.service.business;
 
+import com.example.travelapplication.BuildConfig;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.model.Commity;
 import com.example.travelapplication.model.Page;
@@ -21,7 +22,7 @@ public class CommentBusinessService extends BusinessService{
         params.put("comment", comment);
         params.put("strategy_id", strategyId);
 
-        String url = Global_Variable.IP + "/commity/comment";
+        String url = BuildConfig.BASE_URL + "/commity/comment";
 
         CommentHttpRequestService commentHttpRequestService = refreshTokenThenReturnRetrofit().create(CommentHttpRequestService.class);
         Call<ResponseBody> commentCall = commentHttpRequestService.comment(url,params);
@@ -53,7 +54,7 @@ public class CommentBusinessService extends BusinessService{
             params.put("number",CommentFilterCondition.getPageNum());
         }
 
-        String url = Global_Variable.IP + "/commity/getComment";
+        String url = BuildConfig.BASE_URL + "/commity/getComment";
 
         CommentHttpRequestService commentHttpRequestService = createRetrofit().create(CommentHttpRequestService.class);
         Call<Page<Commity>> commityCall = commentHttpRequestService.getComment(url,params);

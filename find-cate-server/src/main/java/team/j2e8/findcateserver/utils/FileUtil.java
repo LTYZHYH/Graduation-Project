@@ -11,8 +11,10 @@ import java.util.UUID;
 
 public class FileUtil {
     public String FileUtil(MultipartFile multipartFile,String path) throws IOException {
+        String completePath = this.getClass().getClassLoader().getResource("static").toString();
+        completePath = completePath.substring(completePath.indexOf("/")) + path;
         //创建文件夹在服务器端的存放路径
-        File pictureFile = new File(path);
+        File pictureFile = new File(completePath);
         if (!pictureFile.exists()) {
             pictureFile.mkdir();
         }
@@ -26,9 +28,10 @@ public class FileUtil {
     }
 
     public void getPictureFile(String path, String contentType, String pictureName, HttpServletResponse response) throws IOException{
-
+        String completePath = this.getClass().getClassLoader().getResource("static").toString();
+        completePath = completePath.substring(completePath.indexOf("/")) + path;
         response.setContentType(contentType);
-        FileInputStream fp = new FileInputStream(path + pictureName);
+        FileInputStream fp = new FileInputStream(completePath + pictureName);
         if (fp != null) {
             int i = fp.available(); // 得到文件大小
             byte data[] = new byte[i]; // data是字节

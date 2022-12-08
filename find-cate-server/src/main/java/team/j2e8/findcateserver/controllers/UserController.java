@@ -72,7 +72,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST,value = "addUserPic")
     public ResponseEntity<?> addUserPic(@RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
-        String path = "/Users/yhh/Desktop/毕业设计/Find-Cate-master/find-cate-server/src/main/resources/static/userPicture";
+        String path = "/userPicture";
         String fileName;
         if (file.isEmpty()){
             fileName = "n";
@@ -114,7 +114,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET, value = "/userPicture/{pictureName}")
     public void getUserPicture(@PathVariable("pictureName") String pictureName, HttpServletResponse response )throws IOException {
         if (pictureName != null) {
-            String path = "/Users/yhh/Desktop/毕业设计/Find-Cate-master/find-cate-server/src/main/resources/static/userPicture/";
+            String path = "/userPicture/";
             String contentType = "image/jpeg";
             fileUtil.getPictureFile(path,contentType,pictureName,response);
         }
