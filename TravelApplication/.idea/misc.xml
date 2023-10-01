@@ -1,6 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/edit_border.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/item_selector.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/selector_select_picture_bottom_corners.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/selector_select_picture_top_corners.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/shape_common_corners_5dp_solid_transparent00.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/shape_select_picture_bottom_corners_selected.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/shape_select_picture_dialog_bg.xml" value="0.207" />
+        <entry key="app/src/main/res/drawable/shape_white_top.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_city_details.xml" value="0.30052083333333335" />
+        <entry key="app/src/main/res/layout/activity_index.xml" value="0.30052083333333335" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.30052083333333335" />
+        <entry key="app/src/main/res/layout/activity_personal_center.xml" value="0.30052083333333335" />
+        <entry key="app/src/main/res/layout/activity_reply.xml" value="0.30052083333333335" />
+        <entry key="app/src/main/res/layout/activity_travel_strategy.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_travel_strategy_details.xml" value="0.2796875" />
+        <entry key="app/src/main/res/layout/add_food_popup.xml" value="0.2796875" />
+        <entry key="app/src/main/res/layout/newapp_pop_picture.xml" value="0.2796875" />
+        <entry key="app/src/main/res/layout/public_head.xml" value="0.2786458333333333" />
+        <entry key="app/src/main/res/layout/report_strategy_reason.xml" value="0.30052083333333335" />
+        <entry key="app/src/main/res/layout/travel_strategy_item.xml" value="0.2828125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

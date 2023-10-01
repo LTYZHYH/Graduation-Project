@@ -48,6 +48,9 @@ public class HttpResponseDataUtil {
         if (sort.equals("favoriteId")){
             sort = "[{\"property\":\"favoriteId\",\"direction\":\"desc\",\"nullHandlingHint\":\"last\"}]";
         }
+        if (sort.equals("favoriteNum,desc")){
+            sort = "[{\"property\":\"favoriteNum\",\"direction\":\"desc\",\"nullHandlingHint\":\"last\"}]";
+        }
         //下面我把这个写死
         if (sort.length() <10)
             sort = "[{\"property\":\"" + sort + "\",\"direction\":\"desc\",\"nullHandlingHint\":\"last\"}]";

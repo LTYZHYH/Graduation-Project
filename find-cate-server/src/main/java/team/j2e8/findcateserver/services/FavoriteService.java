@@ -61,6 +61,12 @@ public class FavoriteService {
         } else {
             Favorite favorite = new Favorite();
             favorite.setUser(user);
+            TravelStrategy travelStrategy = optionalTravelStrategy.get();
+            int favoriteNum = travelStrategy.getFavoriteNum() + 1;
+            if (favoriteNum >= 0){
+                travelStrategy.setFavoriteNum(favoriteNum);
+                travelStrategyRepository.save(travelStrategy);
+            }
             favorite.setTravelStrategy(optionalTravelStrategy.get());
             favoriteRepository.save(favorite);
             key = 1;
@@ -77,6 +83,14 @@ public class FavoriteService {
         Optional<Favorite> optionalFavorite = favoriteRepository.findOne(booleanBuilder);
         if (optionalFavorite.isPresent()){
             favoriteRepository.delete(optionalFavorite.get());
+        }
+        BooleanBuilder booleanBuilder2 = new BooleanBuilder().and(qTravelStrategy.strategyId.eq(strategyId));
+        Optional<TravelStrategy> optionalTravelStrategy = travelStrategyRepository.findOne(booleanBuilder2);
+        TravelStrategy travelStrategy = optionalTravelStrategy.get();
+        int favoriteNum = travelStrategy.getFavoriteNum() - 1;
+        if (favoriteNum >= 0){
+            travelStrategy.setFavoriteNum(favoriteNum);
+            travelStrategyRepository.save(travelStrategy);
         }
     }
 }

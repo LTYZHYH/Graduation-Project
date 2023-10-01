@@ -24,6 +24,8 @@ public class TravelStrategy implements Serializable {
 
     private Integer strategyAudit;//判断该攻略是否过审
 
+    private Integer favoriteNum;
+
     @JsonProperty(value = "issueTime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date issueTime;
@@ -100,6 +102,14 @@ public class TravelStrategy implements Serializable {
 
     public void setStrategyAudit(Integer strategyAudit) {
         this.strategyAudit = strategyAudit;
+    }
+
+    public Integer getFavoriteNum() {
+        return favoriteNum;
+    }
+
+    public void setFavoriteNum(Integer favoriteNum) {
+        this.favoriteNum = favoriteNum;
     }
 
     public Date getIssueTime() {

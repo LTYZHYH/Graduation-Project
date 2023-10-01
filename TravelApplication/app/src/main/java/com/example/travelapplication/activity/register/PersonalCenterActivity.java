@@ -56,6 +56,7 @@ public class PersonalCenterActivity extends BaseFormActivity implements LoadingV
     private ImageButton personlBtn;
     private ImageButton collectionBtn;
     private ImageButton myStrategyBtn;
+    private ImageView imgBack;
     private Button uploadUser;
 
     private LinearLayout personalLayout;
@@ -102,6 +103,7 @@ public class PersonalCenterActivity extends BaseFormActivity implements LoadingV
         myStrategyLayout = findViewById(R.id.my_strategy_layout);
         listContainer = findViewById(R.id.my_strategy_list);
         listContainer2 = findViewById(R.id.collection_list);
+        imgBack = findViewById(R.id.img_back);
     }
 
     private void initData(){
@@ -238,6 +240,13 @@ public class PersonalCenterActivity extends BaseFormActivity implements LoadingV
     }
 
     private void setListener(){
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         personlBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

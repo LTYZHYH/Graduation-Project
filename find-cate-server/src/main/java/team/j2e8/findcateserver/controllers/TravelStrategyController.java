@@ -96,6 +96,19 @@ public class TravelStrategyController {
     }
 
     @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/uploadStrategyPic")
+    public ResponseEntity<?> uploadStrategyPic(@RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
+        String path = "/strategyPicture";
+        String fileName;
+        if (file.isEmpty()){
+            fileName = "n";
+        } else {
+            fileName = fileUtil.FileUtil(file,path);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(fileName);
+    }
+
+    @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/getStrategyByCityId")
     public ResponseEntity<?> getStrategyByCityId(@RequestParam Integer cityId,
                                                  @RequestParam(value = "${spring.data.rest.page-param-name}", required = false, defaultValue = "${spring.data.rest.default-page-number}") Integer pageNum,
@@ -103,7 +116,7 @@ public class TravelStrategyController {
                                                  @RequestParam(value = "${spring.data.rest.sort-param-name}", required = false, defaultValue = "strategyId,desc") String sort) throws Exception {
 
         Page<TravelStrategy> travelStrategies = travelStrategyService.getPageTravelStrategyByCityId(cityId, sort, pageNum, pageSize);
-        return ResponseEntity.ok(new ObjectSelector().mapPagedObjects(travelStrategies, "(strategyId,area,theme,strategyPicture1)"));
+        return ResponseEntity.ok(new ObjectSelector().mapPagedObjects(travelStrategies, "(strategyId,area,theme,strategyPicture1,favoriteNum)"));
     }
     //根据省份模糊搜索攻略
     @ResponseBody

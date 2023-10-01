@@ -53,7 +53,7 @@ spring:
     #数据库链接（地址，账号，密码）
     datasource:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/j2e8?characterEncoding=utf-8&&useSSL=false
+      url: jdbc:mysql://localhost:3306/j2e8?characterEncoding=utf-8&&allowPublicKeyRetrieval=true&useSSL=false
       username: root
       password: 1234qwer
 #创建文件夹在服务器端的存放路径

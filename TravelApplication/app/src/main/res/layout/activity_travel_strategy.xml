@@ -1,366 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.TravelStrategyActivity">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/public_head"/>
 
-    <ScrollView
-        android:id="@+id/father_scrollview"
+    <LinearLayout
+        android:id="@+id/ll_strategy_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:focusableInTouchMode="false">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="写个标题吧 (最多40个字)~"
+            android:maxLength="40"
+            android:paddingTop="@dimen/dp_15"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:layout_width="@dimen/dp_64"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_8"
+                    android:text="编辑日期:" />
+
+                <TextView
+                    android:id="@+id/tv_issueTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="编  写  攻  略"
-                    android:textColor="@color/buttonBlue"
-                    android:textSize="30sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.292" />
+                    android:layout_margin="@dimen/dp_8"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/upload"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/upload"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.955"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.8" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="@dimen/dp_64"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_8"
+                    android:gravity="right"
+                    android:text="作者:" />
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_8"
+                    android:layout_weight="1"
+                    android:text="" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.example.travelapplication.richtext.view.RichEditor
+        android:id="@+id/rich_Editor"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="#F0F0F0"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    
+                    android:id="@+id/button_image"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:padding="@dimen/dp_4"
+                    android:src="@drawable/picture_icon" />
+
+
+                <ImageView
+                    
+                    android:id="@+id/button_bold"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:padding="@dimen/dp_4"
+                    android:src="@drawable/bold" />
+
+
+                <ImageView
+                    
+                    android:id="@+id/button_underline"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:padding="@dimen/dp_4"
+                    android:src="@drawable/underline" />
+
+
+                <ImageView
+                    
+                    android:id="@+id/button_list_ul"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:padding="@dimen/dp_4"
+                    android:src="@drawable/list_ul" />
+
+                <Space
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
+                    android:layout_weight="1" />
 
-                    <TextView
-                        android:id="@+id/text_theme"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="主题："
-                        android:textSize="14sp" />
 
-                    <EditText
-                        android:id="@+id/edit_theme"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="5dp"
-                        android:background="@drawable/edit_border"
-                        android:maxLength="6"
-                        android:hint="请勿超过六个字"
-                        android:singleLine="true"
-                        android:inputType="textPersonName" />
+                <ImageView
+                    
+                    android:id="@+id/button_list_ol"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:padding="@dimen/dp_4"
+                    android:src="@drawable/list_ol" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <Space
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_area"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="地区："
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/edit_area"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center"
-                        android:hint="选择地区"
-                        android:textSize="14sp"
-                        android:inputType="textPersonName" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_overheadCost"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="开销："
-                        android:textSize="14sp" />
-
-                    <EditText
-                        android:id="@+id/edit_overheadCost"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="5dp"
-                        android:background="@drawable/edit_border"
-                        android:ems="10"
-                        android:singleLine="true"
-                        android:inputType="number" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/text_travelDays"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:text="旅游时长："
-                            android:textSize="14sp" />
-
-                        <EditText
-                            android:id="@+id/edit_travelDays"
-                            android:layout_width="80dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:paddingLeft="5dp"
-                            android:background="@drawable/edit_border"
-                            android:ems="10"
-                            android:singleLine="true"
-                            android:inputType="number" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/textView20"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="景点数：" />
-
-                        <EditText
-                            android:id="@+id/text_scenic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="10dp"
-                            android:paddingLeft="5dp"
-                            android:background="@drawable/edit_border"
-                            android:ems="10"
-                            android:singleLine="true"
-                            android:inputType="number" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5sp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_issueUser"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="提交者："
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/edit_issueUser"
-                        android:layout_width="175dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:textSize="14sp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5sp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_issueTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="提交日期："
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/edit_issueTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-
-                        android:inputType="textPersonName"
-                        android:textSize="15sp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:text="添加美食(非必选)"
-                        android:textColor="#FF9800" />
-
-                    <ImageView
-                        android:id="@+id/add_food_btn"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="10dp"
-                        app:srcCompat="@drawable/addfood" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/edit_border"
-                    android:orientation="vertical">
-
-                    <com.example.travelapplication.component.InnerScrollView
-                        android:id="@+id/son_scrollview"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:orientation="vertical" >
-
-                            <EditText
-                                android:id="@+id/share_travel_strategy"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:background="@null"
-                                android:ems="10"
-                                android:gravity="start|top"
-                                android:hint="输入您分享的攻略"
-                                android:inputType="textMultiLine" />
-                        </LinearLayout>
-                    </com.example.travelapplication.component.InnerScrollView>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="如果可以为您的攻略配上三张照片，以便于其他人更好的理解!"
-                        android:textColor="@color/fontRed"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/iv_image"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:onClick="selectPicture1"
-                            android:src="@drawable/add_picture" />
-
-                        <ImageView
-                            android:id="@+id/iv_image2"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:onClick="selectPicture2"
-                            android:src="@drawable/add_picture" />
-
-                        <ImageView
-                            android:id="@+id/iv_image3"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:onClick="selectPicture3"
-                            android:src="@drawable/add_picture" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
+                    android:layout_weight="1" />
 
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </HorizontalScrollView>
+
+
+        <ImageView
+            
+            android:id="@+id/button_rich_undo"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:padding="@dimen/dp_4"
+            android:src="@drawable/rich_undo" />
+
+
+        <ImageView
+            
+            android:id="@+id/button_rich_do"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:padding="@dimen/dp_4"
+            android:src="@drawable/rich_do" />
+
+
+    </LinearLayout>
+</LinearLayout>

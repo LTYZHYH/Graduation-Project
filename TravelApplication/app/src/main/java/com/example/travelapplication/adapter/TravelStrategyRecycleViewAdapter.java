@@ -1,7 +1,9 @@
 package com.example.travelapplication.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +46,17 @@ public class TravelStrategyRecycleViewAdapter extends RecyclerView.Adapter<Trave
     @Override
     public void onBindViewHolder(@NonNull TravelStrategyRecycleViewAdapter.GridViewHolder holder, final int position) {
         holder.theme.setText(travelStrategyBeanList.get(position).getTheme());
-        holder.area.setText(travelStrategyBeanList.get(position).getArea());
-        GlideApp.with(mContext)
-                .load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + travelStrategyBeanList.get(position).getStrategyPicture1())//获取图片（IP+文件储存路径）
-                .placeholder(R.drawable.loading)//加载未完成时显示占位图
-                .into(holder.strategyPicture1);
+        holder.area.setText("收藏数:" + travelStrategyBeanList.get(position).getFavoriteNum());
+        if (!TextUtils.isEmpty(travelStrategyBeanList.get(position).getStrategyPicture1())){
+            GlideApp.with(mContext)
+                    .load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + travelStrategyBeanList.get(position).getStrategyPicture1())//获取图片（IP+文件储存路径）
+                    .placeholder(R.drawable.loading)//加载未完成时显示占位图
+                    .into(holder.strategyPicture1);
+        } else {
+            GlideApp.with(mContext)
+                    .load(R.drawable.loading)
+                    .into(holder.strategyPicture1);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

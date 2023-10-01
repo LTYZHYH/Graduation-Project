@@ -38,6 +38,8 @@ public class TravelStrategy {
     private Integer isReport;//判断是否被举报
     @Column(name = "report_reason")
     private String reportReason;
+    @Column(name = "favorite_num")
+    private Integer favoriteNum;
     @Column
     @JsonProperty(value = "issueTime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -137,6 +139,15 @@ public class TravelStrategy {
 
     public void setReportReason(String reportReason) {
         this.reportReason = reportReason;
+    }
+
+
+    public Integer getFavoriteNum() {
+        return favoriteNum;
+    }
+
+    public void setFavoriteNum(Integer favoriteNum) {
+        this.favoriteNum = favoriteNum;
     }
 
     public Date getIssueTime() {

@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':imagepicker', ':ucrop'
 rootProject.name='Travel Application'

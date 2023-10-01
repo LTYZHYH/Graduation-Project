@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -40,6 +41,7 @@ public class ReplyActivity extends BaseActivity implements LoadingView, BaseView
     private Integer totalPages;
     private Dialog loadingDialog;
     private Integer commentId;
+    private ImageView imgBack;
 
     private XRecyclerView listContainer;
     private ReplyRecycleViewAdapter replyRecycleViewAdapter;
@@ -63,6 +65,13 @@ public class ReplyActivity extends BaseActivity implements LoadingView, BaseView
         replyEdit = findViewById(R.id.reply);
         replyBtn = findViewById(R.id.reply_btn);
         listContainer = findViewById(R.id.reply_list);
+        imgBack = findViewById(R.id.img_back);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

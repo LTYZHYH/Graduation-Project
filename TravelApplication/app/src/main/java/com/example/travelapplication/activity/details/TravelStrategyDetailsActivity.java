@@ -1,15 +1,25 @@
 package com.example.travelapplication.activity.details;
 
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Printer;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,10 +42,12 @@ import com.example.travelapplication.activity.view.LoadingView;
 import com.example.travelapplication.adapter.GlideApp;
 import com.example.travelapplication.adapter.LoopDetailsBackgroundAdapter;
 import com.example.travelapplication.adapter.WeatherRecyclerViewAdapter;
+import com.example.travelapplication.databinding.ActivityTravelStrategyDetailsBinding;
 import com.example.travelapplication.infrastructure.utils.DecideErrorUtils;
 import com.example.travelapplication.infrastructure.utils.Global_Variable;
 import com.example.travelapplication.infrastructure.utils.SnackBarUtils;
 import com.example.travelapplication.model.TravelStrategy;
+import com.example.travelapplication.richtext.utils.RichUtils;
 import com.example.travelapplication.service.business.ReportBusinessService;
 import com.example.travelapplication.service.business.TravelStrategyBusinessService;
 import com.example.travelapplication.service.business.listener.BaseHandler;
@@ -60,18 +72,8 @@ import static com.example.travelapplication.infrastructure.utils.TimeFormatUtils
 
 public class TravelStrategyDetailsActivity extends BaseActivity implements LoadingView, BaseView {
     private final static String TAG = "result:";
-    private ImageView img1;
-    private ImageView img2;
-    private ImageView img3;
-
-    private TextView themeText;
-    private TextView areaText;
-    private TextView costText;
-    private TextView travelDaysText;
-    private TextView userName;
-    private TextView scenicNumberText;
-    private TextView issueTime;
-    private TextView strategyContent;
+    ActivityTravelStrategyDetailsBinding travelStrategyDetailsBinding;
+    private Context mContext;
     private ImageButton commentBtn;
     private ImageButton favoriteBtn;
     private ImageButton reportBtn;
@@ -96,29 +98,18 @@ public class TravelStrategyDetailsActivity extends BaseActivity implements Loadi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_travel_strategy_details);
+        travelStrategyDetailsBinding = ActivityTravelStrategyDetailsBinding.inflate(getLayoutInflater());
+        setContentView(travelStrategyDetailsBinding.getRoot());
+        mContext = TravelStrategyDetailsActivity.this;
         HeConfig.init("HE2003121843011687", "5ccffd3aaa834e86a52f4faaba4507cd");
         HeConfig.switchToFreeServerNode();
         initView();
         strategyId = getIntent().getIntExtra("strategy_id", 0);
         initData();
         setListener();
-        initLoopView();
     }
 
     private void initView(){
-        img1 = findViewById(R.id.strategy_p1);
-        img2 = findViewById(R.id.strategy_p2);
-        img3 = findViewById(R.id.strategy_p3);
-
-        themeText = findViewById(R.id.theme_text);
-        areaText = findViewById(R.id.area_text);
-        costText = findViewById(R.id.cost_text);
-        travelDaysText = findViewById(R.id.travel_days_text);
-        userName = findViewById(R.id.issueUser_text);
-        scenicNumberText = findViewById(R.id.scenic_text);
-        issueTime = findViewById(R.id.issueTime_text);
-        strategyContent = findViewById(R.id.travel_content_text);
         commentBtn = findViewById(R.id.commentBtn);
         favoriteBtn = findViewById(R.id.star);
         reportBtn = findViewById(R.id.reportStr);
@@ -171,6 +162,13 @@ public class TravelStrategyDetailsActivity extends BaseActivity implements Loadi
     }
 
     private void setListener(){
+        travelStrategyDetailsBinding.include.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         openWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -235,96 +233,72 @@ public class TravelStrategyDetailsActivity extends BaseActivity implements Loadi
         weatherRecyclerViewAdapter.setGridDataList(forecastBaseList);
     }
 
-    private void initStrategy(TravelStrategy travelStrategy) {
-        GlideApp.with(this).load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + travelStrategy.getStrategyPicture1()).placeholder(R.drawable.loading).into(img1);
-        GlideApp.with(this).load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + travelStrategy.getStrategyPicture2()).placeholder(R.drawable.loading).into(img2);
-        GlideApp.with(this).load(BuildConfig.BASE_URL + "/travelstrategy/picture/" + travelStrategy.getStrategyPicture3()).placeholder(R.drawable.loading).into(img3);
-        cityName = travelStrategy.getArea();
-        themeText.setText(travelStrategy.getTheme());
-        areaText.setText(travelStrategy.getArea());
-        costText.setText(travelStrategy.getOverheadCost());
-        travelDaysText.setText(travelStrategy.getTravelDays());
-        userName.setText(travelStrategy.getUser().getUserName());
-        scenicNumberText.setText(travelStrategy.getScenicNumber());
-        issueTime.setText(getFormatDatetime(travelStrategy.getIssueTime()));
-        strategyContent.setText(travelStrategy.getStrategyContent());
-    }
-
-    private void initLoopView() {
-        viewPager = findViewById(R.id.loop_strategy_detail);
-        mImg_id = new int[]{
-                R.id.strategy_p1,
-                R.id.strategy_p2,
-                R.id.strategy_p3,
-        };
-        // 初始化要展示的ImageView
-        mImgList = new ArrayList<>();
-        ImageView imageView;
-        LinearLayout.LayoutParams layoutParams;
-        for (int i = 0; i < 3; i++) {
-            //初始化要显示的图片对象
-            if (i == 0){
-                imageView = img1;
-            } else if (i == 1){
-                imageView = img2;
-            } else {
-                imageView = img3;
-            }
-            imageView.setId(mImg_id[i]);
-
-            mImgList.add(imageView);
-            layoutParams = new LinearLayout.LayoutParams(10, 10);
-            if (i != 0) {
-                layoutParams.leftMargin = 10;
-            }
+    public WebViewClient webViewClient = new WebViewClient() {
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
         }
 
 
-        previousSelectedPosition = 0;
-        //设置适配器
-        viewPager.setAdapter(new LoopDetailsBackgroundAdapter(TravelStrategyDetailsActivity.this,mImgList,true,strategyId));
-        // 把ViewPager设置为默认选中Integer.MAX_VALUE / t2，从十几亿次开始轮播图片，达到无限循环目的;
-        int m = (Integer.MAX_VALUE / 2) % mImgList.size();
-        int currentPosition = Integer.MAX_VALUE / 2 - m;
-        viewPager.setCurrentItem(currentPosition);
-        viewPager.setOnClickListener(new pagerOnClickListener(getApplicationContext()));
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-                previousSelectedPosition = i;
-            }
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            handler.proceed();
+        }
 
-            @Override
-            public void onPageSelected(int i) {
-                int newPosition = i % mImgList.size();
-                previousSelectedPosition = newPosition;
-            }
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return super.shouldOverrideUrlLoading(view, url);
+        }
 
-            @Override
-            public void onPageScrollStateChanged(int i) {
-            }
-        });
+        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            String url = request.getUrl().toString();
+            return super.shouldOverrideUrlLoading(view, request);
+        }
+    };
 
-        // 开启轮询
-        new Thread(){
-            public void run(){
-                isRunning = true;
-                while(isRunning){
-                    try{
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    //下一条
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
-                        }
-                    });
+    private void initStrategy(TravelStrategy travelStrategy) {
+        cityName = travelStrategy.getArea();
+        travelStrategyDetailsBinding.tvStrategyTitle.setText(travelStrategy.getTheme());
+        travelStrategyDetailsBinding.tvUsername.setText(travelStrategy.getUser().getUserName());
+        travelStrategyDetailsBinding.tvIssueTime.setText(getFormatDatetime(travelStrategy.getIssueTime()));
+        String data = travelStrategy.getStrategyContent();
+        WebSettings settings = travelStrategyDetailsBinding.webView.getSettings();
+
+        //settings.setUseWideViewPort(true);//调整到适合webview的大小，不过尽量不要用，有些手机有问题
+        settings.setLoadWithOverviewMode(true);//设置WebView是否使用预览模式加载界面。
+        settings.setAllowUniversalAccessFromFileURLs(true);
+        settings.setAllowFileAccess(true);
+        settings.setAllowFileAccessFromFileURLs(true);
+
+        travelStrategyDetailsBinding.webView.setVerticalScrollBarEnabled(false);//不能垂直滑动
+        travelStrategyDetailsBinding.webView.setHorizontalScrollBarEnabled(false);//不能水平滑动
+        settings.setTextSize(WebSettings.TextSize.NORMAL);//通过设置WebSettings，改变HTML中文字的大小
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);//支持通过JS打开新窗口
+        //设置WebView属性，能够执行Javascript脚本
+        travelStrategyDetailsBinding.webView.getSettings().setJavaScriptEnabled(true);//设置js可用
+
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//支持内容重新布局
+        travelStrategyDetailsBinding.webView.setWebViewClient(webViewClient);
+        travelStrategyDetailsBinding.webView.setWebChromeClient(new WebChromeClient());
+        data = "</Div><head><style>body{font-size:16px}</style>" +
+                "<style>img{ width:100% !important;margin-top:0.4em;margin-bottom:0.4em}</style>" +
+                "<style>ul{ padding-left: 1em;margin-top:0em}</style>" +
+                "<style>ol{ padding-left: 1.2em;margin-top:0em}</style>" +
+                "</head>" + data;
+
+        ArrayList<String> arrayList = RichUtils.returnImageUrlsFromHtml(data);
+        if (arrayList.size() > 0) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (!arrayList.get(i).contains("http")) {
+                    //如果不是http,那么就是本地绝对路径，要加上file
+                    data = data.replace(arrayList.get(i), "file://" + arrayList.get(i));
                 }
             }
-        }.start();
+        }
+
+        travelStrategyDetailsBinding.webView.loadDataWithBaseURL(null, data, "text/html", "utf-8", null);
     }
 
     private void showReportPopupWindow(){
@@ -399,7 +373,7 @@ public class TravelStrategyDetailsActivity extends BaseActivity implements Loadi
 
     @Override
     public View getAnchorView() {
-        return themeText;
+        return travelStrategyDetailsBinding.include.imgBack;
     }
 
     @Override

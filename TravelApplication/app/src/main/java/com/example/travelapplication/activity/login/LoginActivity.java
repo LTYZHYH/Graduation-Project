@@ -1,5 +1,8 @@
 package com.example.travelapplication.activity.login;
 
+import static com.example.travelapplication.component.popup.LoadingDialog.closeLoadingDialog;
+import static com.example.travelapplication.component.popup.LoadingDialog.createLoadingDialog;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,9 +28,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 
 import retrofit2.Response;
-
-import static com.example.travelapplication.component.popup.LoadingDialog.closeLoadingDialog;
-import static com.example.travelapplication.component.popup.LoadingDialog.createLoadingDialog;
 
 public class LoginActivity extends BaseFormActivity implements BaseView, LoadingView {
     private Dialog loadingDialog;

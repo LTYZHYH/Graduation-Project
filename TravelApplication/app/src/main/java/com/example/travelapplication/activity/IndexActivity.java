@@ -38,6 +38,7 @@ public class IndexActivity extends BaseActivity implements BaseView, LoadingView
     private GridAdapter.GridViewHolder gridViewHolder;
 
     private ImageView indexbg;
+    private ImageView imgBack;
     private Button personalBotton;
     private Button foodBtn;
 
@@ -81,11 +82,19 @@ public class IndexActivity extends BaseActivity implements BaseView, LoadingView
     private void initView(){
         cityPicture = findViewById(R.id.cityPicture);
         indexbg = findViewById(R.id.indexbg);
+        imgBack = findViewById(R.id.img_back);
         personalBotton = findViewById(R.id.personal);
         foodBtn = findViewById(R.id.food_btn);
     }
 
     private void setListener(){
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         personalBotton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

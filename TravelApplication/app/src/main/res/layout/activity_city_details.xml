@@ -11,6 +11,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <include layout="@layout/public_head"/>
+
         <LinearLayout
             android:id="@+id/details_background"
             android:layout_width="match_parent"
@@ -114,20 +116,21 @@
                         android:id="@+id/less_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="短期" />
+                        android:text="短期"
+                        android:visibility="gone"/>
 
                     <RadioButton
                         android:id="@+id/less_line"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="短途" />
+                        android:text="收藏数" />
 
                     <RadioButton
                         android:id="@+id/synthesize"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="综合" />
+                        android:text="最新" />
                 </RadioGroup>
             </LinearLayout>
         </LinearLayout>

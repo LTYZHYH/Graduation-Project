@@ -65,6 +65,7 @@ public class cityDetailsActivity extends BaseActivity implements LoadingView, Ba
     private LinearLayout ll_dots_container;
     private int previousSelectedPosition = 0;//之前选择的位置
     boolean isRunning = false;
+    private ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +84,7 @@ public class cityDetailsActivity extends BaseActivity implements LoadingView, Ba
         searchTravelStrategy = findViewById(R.id.search_ts);
         searchParentLayout = findViewById(R.id.search_ts_parent);
         radioGroup = findViewById(R.id.select_radio_group);
+        imgBack = findViewById(R.id.img_back);
     }
 
     private void initData(){
@@ -299,6 +301,13 @@ public class cityDetailsActivity extends BaseActivity implements LoadingView, Ba
     }
 
     private void setListener(){
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         issueTravelStrategy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -357,7 +366,7 @@ public class cityDetailsActivity extends BaseActivity implements LoadingView, Ba
                         refreshData();
                         break;
                     case R.id.less_line:
-                        sort = "scenicNumber,asc";
+                        sort = "favoriteNum,desc";
                         refreshData();
                         break;
                     case R.id.synthesize:

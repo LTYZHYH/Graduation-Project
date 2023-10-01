@@ -28,6 +28,8 @@ public class QTravelStrategy extends EntityPathBase<TravelStrategy> {
 
     public final SetPath<Commity, QCommity> commity = this.<Commity, QCommity>createSet("commity", Commity.class, QCommity.class, PathInits.DIRECT2);
 
+    public final NumberPath<Integer> favoriteNum = createNumber("favoriteNum", Integer.class);
+
     public final NumberPath<Integer> isReport = createNumber("isReport", Integer.class);
 
     public final DateTimePath<java.util.Date> issueTime = createDateTime("issueTime", java.util.Date.class);
